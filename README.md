@@ -1,4 +1,3 @@
-# Pear-farmer
 # Pear farmer
 
 ## サイト概要
