@@ -1,5 +1,4 @@
-# Pear-farmer
-# Pear farmer
+# Nashikau!+
 
 ## サイト概要
 ### サイトテーマ
@@ -22,21 +21,23 @@
 このようにサイトを使うことで梨農家の方々の力になれる事がたくさんあると思い、このテーマにしました。
 
 ### ターゲットユーザ
-・自宅や路上販売をする梨農家の方
-・袋詰め等でその日に手伝いにきた方
-・これから梨農家を継ごうと思っている方
+- 自宅や路上販売をする梨農家の方
+- 袋詰め等でその日に手伝いにきた方
+- これから梨農家を継ごうと思っている方
 
 ### 主な利用シーン
-・梨の出荷時期である８月〜１１月の梨の売買をする際に利用
-・自宅で販売する際
-・路上などで販売する際
-・電話にて注文を受けた際
-・未収か領収済か確認する際
-・注文していただいたお客様の過去の注文を確認する際
-・毎年の梨の出荷具合を確認する際
+- 梨の出荷時期である８月〜１１月の梨の売買をする際に利用
+- 自宅で販売する際
+- 路上などで販売する際
+- 電話にて注文を受けた際
+- 未収か領収済か確認する際
+- 注文していただいたお客様の過去の注文を確認する際
+- 毎年の梨の出荷具合を確認する際
 
 ## 設計書
-
+- ワイヤーフレーム:figma(https://www.figma.com/file/hYKzxy1npKID6aPcLieSGb/Untitled?node-id=0%3A1)
+- ER図:draw.io(https://drive.google.com/file/d/14gS2teLvS7tMUtLv3VC6Eghi0CHgznfO/view?usp=sharing)
+- テーブル定義書:spreadsheets(https://docs.google.com/spreadsheets/d/1y-JBCsXc2sxbwbCSzpXjn7LxAHFhWwF9Pb95yAgDEsg/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
