@@ -1,0 +1,2 @@
+class Jpear < ApplicationRecord
+end
