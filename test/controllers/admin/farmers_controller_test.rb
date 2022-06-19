@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Public::JpearFarmersControllerTest < ActionDispatch::IntegrationTest
+class Admin::FarmersControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

@@ -1,0 +1,6 @@
+  ja:
+    enums:
+      jpear:
+        stutes:
+          sold: "販売停止中"
+          sale: "販売中"
