@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  before_action :configure_sign_in_params, only: [:create]
+  # before_action :configure_sign_in_params, only: [:create]
+  before_action :farmer_state, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -26,20 +27,21 @@ class Public::SessionsController < Devise::SessionsController
   # end
   
    def after_sign_in_path_for(resource)
-    #mypage_path
+    public_order_details_path
   end
 
   def after_sign_out_path_for(resource)
-    root_path
+    public_path
   end
   
-  def reject_inactive_customer
-    @farmer = Farmer.find_by(email: params[:farmer][:email])
-    if @farmer
-      if @farmer.valid_password?(params[:farmer][:password]) && !@farmer.is_active
-        flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
-        redirect_to new_farmer_session_path
-      end
-    end
-  end
+    protected
+
+   def farmer_state
+     @farmer = Farmer.find_by(email: params[:farmer][:email].downcase)
+     return if !@farmer
+       if @farmer.valid_password?(params[:farmer][:password]) && @farmer.is_deleted == true
+        flash[:notice] = "退会済みです。申し訳ございませんが、再度ご登録をしてご利用ください。"
+        redirect_to new_farmer_registration_path
+       end
+   end
 end

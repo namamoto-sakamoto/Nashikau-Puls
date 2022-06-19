@@ -1,2 +1,38 @@
-<h1>Public::Customers#new</h1>
-<p>Find me in app/views/public/customers/new.html.erb</p>
+<h4>顧客新規登録</h4>
+<table class="table">
+  <%= form_with model:@customer, url: public_customers_path, method: :post, local:true do |f| %>
+  <tr>
+    <td><%= f.label :last_name, "氏名（姓）" %></td>
+    <td><%= f.text_field :last_name, autofocus: true %></td>
+  </tr>    
+  <tr>
+    <td><%= f.label :first_name, "氏名（名）" %></td>
+    <td><%= f.text_field :first_name %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :last_name_kana, "氏名（セイ）" %></td>
+    <td><%= f.text_field :last_name_kana %></td>
+  </tr>  
+  <tr>
+    <td><%= f.label :first_name_kana, "氏名（メイ）" %></td>
+    <td><%= f.text_field :first_name_kana %></td>
+  </tr>  
+  <tr>
+    <td><%= f.label :postcode, "郵便番号（ハイフンなし7桁）" %></td>
+    <td><%= f.text_field :postcode %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :address, "住所(郵便番号から自動入力)" %></td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :phone_number, "連絡先電話番号" %></td>
+    <td><%= f.text_field :phone_number %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :memo, "メモ" %></td>
+    <td><%= f.text_field :memo %></td>
+  </tr>
+    <%= f.submit '新規登録', class: "btn btn-success" %>
+<% end %>
+</table>
