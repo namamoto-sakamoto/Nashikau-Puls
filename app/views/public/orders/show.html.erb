@@ -1,0 +1,35 @@
+<h4>注文フォーム</h4>
+<table class="table table-borderless">
+  <%= form_with model:@order, url: public_orders_path, method: :post, local:true do |f| %>
+    <!--注文者の情報をcustomerから引っ張ってきたい-->
+    <tr>
+      <td>注文者</td>
+      <td><%= @customer.full_name %></td>
+      <%= f.hidden_field :customer_id, :value => @customer.id %>
+    </tr>
+    <!--セレクトボックスで購入したい品種を選択-->
+    <tr>
+      <td><%= f.select :name, *[@jpears] %></td>
+      <td><%= f.submit '選択', class: "btn btn-sm btn-success" %></td>
+    </tr> 
+    <!--選択した品種で登録してある販売商品をチェックボックスで表示したい-->
+    <tr>
+      <td><%= f.label :product_type, "販売商品" %></td>
+      <!--product_typeを持ってきたい-->
+      <% @orders.each do |order| %>
+        <td><%= f.checkbox :@product_types %></td>
+        <td><%= f.label :@jpears.product_type, "販売商品" %></td>
+      <% end %>  
+    </tr>
+    <tr>
+      <td><%= f.label :memo, "メモ" %></td>
+      <td><%= f.text_field :memo %></td>
+    </tr>
+    <td>
+      <%= f.submit 'カートへ', class: "btn btn-warning" %>
+    </td>
+    <td>
+      <%= link_to "追加注文する", new_public_order_path, class: "btn btn-info" %>
+    </td>
+  <% end %>
+</table>

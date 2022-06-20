@@ -30,6 +30,10 @@
       <td>メモ</td>
       <td><%= @customer.memo %></td>
     </tr>
-    <td><%= link_to "編集", edit_public_customer_path(@customer.id), class: "btn btn-warning" %></td>
   </tbody>
 </table>
+<div class="active">
+      <%= link_to "編集", edit_public_customer_path(@customer.id), class: "btn btn-warning" %>
+      <%= link_to "配送先一覧へ", public_delivery_path, class: "btn btn-info" %>
+      <%= link_to "戻る", public_customers_path, class: "btn btn-outline-success" %>
+    </div> 
