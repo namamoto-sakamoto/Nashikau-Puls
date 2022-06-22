@@ -9,16 +9,24 @@
     </tr>
     <!--セレクトボックスで購入したい品種を選択-->
     <tr>
-      <td><%= f.select :name, *[@jpears] %></td>
-      <td><%= f.submit '選択', class: "btn btn-sm btn-success" %></td>
+      <td><%= f.label :jpear, "品種" %></td>
+      <td>
+      <%= form_with model:@order, url: public_order_path, method: :patch, local:true do |f| %> 
+        <%= f.select :jpear, *[@jpear.map(&:name)] %>
+        <%= f.submit '選択', class: "btn btn-sm btn-success" %>
+      <% end %>  
+      </td>
     </tr> 
     <!--選択した品種で登録してある販売商品をチェックボックスで表示したい-->
     <tr>
       <td><%= f.label :product_type, "販売商品" %></td>
       <!--product_typeを持ってきたい-->
       <% @orders.each do |order| %>
-        <td><%= f.checkbox :@product_types %></td>
-        <td><%= f.label :@jpears.product_type, "販売商品" %></td>
+        <td><%= f.checkbox :@product_type %></td>
+        <td>
+          <%= f.label :@product_type.item_name %>
+          <%= f.label :@product_type.tax_price %>
+        </td>
       <% end %>  
     </tr>
     <tr>
@@ -29,7 +37,7 @@
       <%= f.submit 'カートへ', class: "btn btn-warning" %>
     </td>
     <td>
-      <%= link_to "追加注文する", new_public_order_path, class: "btn btn-info" %>
+      <%#= link_to "追加注文する", public_order_path(@order.customer_id), class: "btn btn-info" %>
     </td>
   <% end %>
 </table>
