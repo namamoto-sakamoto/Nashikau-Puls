@@ -60,6 +60,9 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
 gem 'devise'
 gem "enum_help"
 gem 'image_processing', '~> 1.2'
+gem 'mechanize'
+gem 'react-rails'

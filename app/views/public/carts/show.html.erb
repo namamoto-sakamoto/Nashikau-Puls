@@ -1,2 +1,39 @@
-<h1>Public::Carts#index</h1>
-<p>Find me in app/views/public/carts/index.html.erb</p>
+<h4>注文フォーム</h4>
+<table class="table table-borderless">
+  <%= form_with model:@cart, url: public_carts_path, method: :post, local:true do |f| %>
+    <!--注文者の情報をcustomerから引っ張ってきたい-->
+    <tr>
+      <td>注文者</td>
+      <td><%= @customer.full_name %></td>
+      <%= f.hidden_field :customer_id, :value => @customer.id %>
+    </tr>
+    <!--セレクトボックスで購入したい品種を選択-->
+    <tr>
+      <td><%= f.label :jpear, "品種" %></td>
+      <td>
+      <%= form_with model:@cart, url: public_cart_path, method: :patch, local:true do |f| %> 
+        <%= f.select :jpear, *[@jpear.map(&:name)] %>
+        <%= f.submit '選択', class: "btn btn-sm btn-success" %>
+      <% end %>  
+      </td>
+    </tr> 
+    <!--選択した品種で登録してある販売商品をチェックボックスで表示したい-->
+    <tr>
+      <td><%= f.label :product_type, "販売商品" %>
+        <%#= collection_check_boxes(:cart, :product_type_ids, ProductType.all, :id, :item_name, :tax_price) do |b| %>
+          <%#= b.label { b.check_box + b.text } %>
+        <%# end %>  
+      </td>  
+    </tr>
+    <tr>
+      <td><%= f.label :memo, "メモ" %></td>
+      <td><%= f.text_field :memo %></td>
+    </tr>
+    <td>
+      <%= f.submit 'カートへ', class: "btn btn-warning" %>
+    </td>
+    <td>
+      <%#= link_to "追加注文する", public_order_path(@order.customer_id), class: "btn btn-info" %>
+    </td>
+  <% end %>
+</table>

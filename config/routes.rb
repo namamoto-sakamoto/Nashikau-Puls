@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :public do
     get "/" => "home#top"
     resources :order_details, only: [:index, :show]
-    resources :orders, only: [:show, :create, :update]
+    resources :orders, only: [:show, :create, :update, :index]
     resources :product_types, only: [:index, :create, :destroy]
     resources :jpears, only: [:index, :new, :create, :show]
     resources :deliveries, only: [:show, :create, :edit, :update]

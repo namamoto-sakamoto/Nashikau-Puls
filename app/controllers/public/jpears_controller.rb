@@ -20,6 +20,7 @@ class Public::JpearsController < ApplicationController
   def show
     @jpear = Jpear.find(params[:id])
     @product_types = @jpear.product_types
+    byebug
     @product_type = ProductType.new
   end
 

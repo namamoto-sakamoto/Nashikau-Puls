@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+  def index
+    byebug
+  end
   def show
     @order = Order.new
     @orders = Order.where(params[:id])
