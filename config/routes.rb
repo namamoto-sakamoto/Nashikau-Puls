@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   
+devise_for :admin,skip: [:registrations, :passwords], controllers: {
+  sessions: "admin/sessions"
+}
+
+devise_for :farmers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+  
   namespace :admin do
     resources :farmers, only: [:index, :show]
   end
@@ -12,15 +21,7 @@ Rails.application.routes.draw do
     resources :jpears, only: [:index, :new, :create, :show]
     resources :deliveries, only: [:show, :create, :edit, :update]
     resources :customers, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :carts, only: [:index, :show, :update, :create, :destroy]
+    resources :carts, only: [:new, :show, :update, :create, :destroy]
   end
 
-devise_for :admin,skip: [:registrations, :passwords], controllers: {
-  sessions: "admin/sessions"
-}
-
-devise_for :farmers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
 end

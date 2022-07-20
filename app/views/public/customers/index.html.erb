@@ -9,6 +9,7 @@
   　　<th></th>
   　　<th></th>
   　　<th></th>
+  　　<th></th>
   　</tr>
   </thead>    
   <tbody>
@@ -21,7 +22,8 @@
           <% end %>
         </td>
     　　<td><%= customer.phone_number %></td>
-        <td><%= link_to "注文", public_cart_path(customer.id), class: "btn btn-info" %></td>
+        <td><%= link_to "注文", new_public_cart_path(customer.id), class: "btn btn-success" %></td>
+        <td><%= link_to "配送先一覧へ", public_delivery_path(customer.id), class: "btn btn-info" %></td>
         <td><%= link_to "編集", edit_public_customer_path(customer.id), class: "btn btn-warning" %></td>
         <td><%= link_to "削除", public_customer_path(customer.id), method: :delete, "data-confirm" => "#{customer.full_name}を削除します。よろしいでしょうか？",class: "btn btn-danger" %></td>
     　</tr>

@@ -1,7 +1,4 @@
 class Public::OrdersController < ApplicationController
-  def index
-    byebug
-  end
   def show
     @order = Order.new
     @orders = Order.where(params[:id])
@@ -20,6 +17,7 @@ class Public::OrdersController < ApplicationController
       @customer = Customer.find(params[:id])
       render :show
     end
+    
     # カート内商品情報を注文詳細画面に持っていってカート内を空にする記述
     @order.customer_id.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new

@@ -1,6 +1,18 @@
   ja:
+    activerecord:
+      errors:
+        messages:
+          record_invalid: "バリデーションに失敗しました: %{errors}"
+
+  
+  ja:
     enums:
       jpear:
-        stutes:
+        status:
           sold: "販売停止中"
           sale: "販売中"
+      
+      cart:
+        status:
+          receipt: "領収"
+          accrued: "未収"

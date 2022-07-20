@@ -1,43 +1,27 @@
-<h4>注文フォーム</h4>
-<table class="table table-borderless">
-  <%= form_with model:@order, url: public_orders_path, method: :post, local:true do |f| %>
-    <!--注文者の情報をcustomerから引っ張ってきたい-->
+<h4>注文履歴一覧画面</h4>
+<table class="table table-borderd">
+  <thead class="table-secondary">
     <tr>
-      <td>注文者</td>
-      <td><%= @customer.full_name %></td>
-      <%= f.hidden_field :customer_id, :value => @customer.id %>
+      <th>注文日</th>
+      <th>氏名</th>
+      <th>品種</th>
+      <th>商品名</th>
+      <th>徴収金額</th>
+      <th>ステータス</th>
+      <th></th>
     </tr>
-    <!--セレクトボックスで購入したい品種を選択-->
-    <tr>
-      <td><%= f.label :jpear, "品種" %></td>
-      <td>
-      <%= form_with model:@order, url: public_order_path, method: :patch, local:true do |f| %> 
-        <%= f.select :jpear, *[@jpear.map(&:name)] %>
-        <%= f.submit '選択', class: "btn btn-sm btn-success" %>
-      <% end %>  
-      </td>
-    </tr> 
-    <!--選択した品種で登録してある販売商品をチェックボックスで表示したい-->
-    <tr>
-      <td><%= f.label :product_type, "販売商品" %></td>
-      <!--product_typeを持ってきたい-->
-      <% @orders.each do |order| %>
-        <td><%= f.checkbox :@product_type %></td>
-        <td>
-          <%= f.label :@product_type.item_name %>
-          <%= f.label :@product_type.tax_price %>
-        </td>
-      <% end %>  
-    </tr>
-    <tr>
-      <td><%= f.label :memo, "メモ" %></td>
-      <td><%= f.text_field :memo %></td>
-    </tr>
-    <td>
-      <%= f.submit 'カートへ', class: "btn btn-warning" %>
-    </td>
-    <td>
-      <%#= link_to "追加注文する", public_order_path(@order.customer_id), class: "btn btn-info" %>
-    </td>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime('%Y/%m/%d/') %></td>
+        <td><%= order.customer_id.name %></td>
+        <td><%= order.jpear.name %></td>
+        <td><%= order.product_type.item_name %></td>
+        <td><%= @total %></td>
+        <td><%= order.cart.statuses_i18n[order.status] %></td>
+        <td><%= link_to public_order_detail_path(order.id), class: "btn btn-info" do %>詳細<% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

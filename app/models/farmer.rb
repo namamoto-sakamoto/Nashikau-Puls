@@ -4,4 +4,7 @@ class Farmer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :customers, dependent: :destroy
+  has_many :jpears
+  
+  # enum status: { validity: 0, out:1 }
 end

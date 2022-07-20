@@ -1,6 +1,8 @@
 class Jpear < ApplicationRecord
   has_many :product_types, dependent: :destroy
   has_one_attached :image
+  belongs_to :farmer
+  
   # 画像未投稿時の対処
   def get_image(width, height)
     unless image.attached?

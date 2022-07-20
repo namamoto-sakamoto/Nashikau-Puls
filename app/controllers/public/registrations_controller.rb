@@ -7,6 +7,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   # def new
   #   super
+  #   @farmer = Farmer.new
   # end
 
   # POST /resource
@@ -60,8 +61,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
    def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:farmer_name, :name, :name_kana, :phone_number, :email, :address, :postcode])
-  end
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:farmer_name, :name, :name_kana, :phone_number, :email, :address, :postcode, :is_deleted])
+   end
   
    def after_sign_up_path_for(resource)
     public_order_details_path

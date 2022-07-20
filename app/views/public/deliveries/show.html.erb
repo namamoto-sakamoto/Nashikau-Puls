@@ -1,39 +1,7 @@
-<h4>送り先新規登録</h4>
-<table class="table">
-  <%= form_with model:@delivery, url: public_deliveries_path, method: :post, local:true do |f| %>
-  <tr>
-    <td><%= f.label :name, "氏名" %></td>
-    <td><%= f.text_field :name, autofocus: true %></td>
-  </tr>    
-  <tr>
-    <td><%= f.label :name_kana, "フリガナ" %></td>
-    <td><%= f.text_field :name_kana %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :postcode, "郵便番号（ハイフンなし7桁）" %></td>
-    <td><%= f.text_field :postcode %></td>
-  </tr>  
-  <tr>
-    <td><%= f.label :address, "住所(郵便番号から自動入力)" %></td>
-    <td><%= f.text_field :address %></td>
-  </tr>  
-  <tr>
-    <td><%= f.label :phone_number, "連絡先電話番号" %></td>
-    <td><%= f.text_field :phone_number %></td>
-  </tr>
-    <%= f.hidden_field :customer_id, :value => @customer.id %>
-    <%= f.submit '新規登録', class: "btn btn-success" %>
-  <% end %>
-</table>
-<div>
- <%= link_to "戻る", public_customer_path(@customer.id), class: "btn btn-warning" %>
-</div>
-
 <h4>送り先一覧</h4>
 <table class="table">
   <thead>
     <tr>
-  　　<th>ID</th>
   　　<th>氏名</th>
   　　<th>住所</th>
   　　<th>連絡先電話番号</th>
@@ -43,7 +11,6 @@
   <tbody>
     <% @deliveries.each do |delivery| %>
       <tr>
-        <td><%= delivery.id %></td>
     　　<td>
     　　    <%#= link_to public_customer_path(customer.id) do %>
             <%= delivery.name %>
@@ -59,3 +26,39 @@
     <% end %>  
   </tbody>  
 </table>
+<%= form_with model:@delivery, url: public_deliveries_path, method: :post, local:true do |f| %>
+  <div class="row">
+    <div class="col-8 offset-1 mt-4">
+      <h4>送り先新規登録</h4>
+      <table class="table table-borderless">
+        <tr>
+          <td><%= f.label :name, "氏名" %></td>
+          <td><%= f.text_field :name, autofocus: true %></td>
+        </tr>    
+        <tr>
+          <td><%= f.label :name_kana, "フリガナ" %></td>
+          <td><%= f.text_field :name_kana %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :postcode, "郵便番号（ハイフンなし7桁）" %></td>
+          <td><%= f.text_field :postcode %></td>
+        </tr>  
+        <tr>
+          <td><%= f.label :address, "住所(郵便番号から自動入力)" %></td>
+          <td><%= f.text_field :address %></td>
+        </tr>  
+        <tr>
+          <td><%= f.label :phone_number, "連絡先電話番号" %></td>
+          <td><%= f.text_field :phone_number %></td>
+        </tr>
+        <%= f.hidden_field :customer_id, :value => @customer.id %>
+        <tr>  
+          <%= f.submit '新規登録', class: "btn btn-success" %>
+        </tr>  
+      </table>
+     </div>
+  </div>    
+<% end %>
+<div class="back_btn">
+ <%= link_to "戻る", public_customer_path(@customer.id), class: "btn btn-warning" %>
+</div>

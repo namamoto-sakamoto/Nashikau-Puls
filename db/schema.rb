@@ -56,7 +56,11 @@ ActiveRecord::Schema.define(version: 2022_07_05_044309) do
     t.integer "customer_id", null: false
     t.integer "product_type_id", null: false
     t.integer "amount", null: false
-    t.integer "shipping_fee", null: false
+    t.integer "postcode", null: false
+    t.string "address", null: false
+    t.string "name", null: false
+    t.string "name_kana", null: false
+    t.integer "phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -114,6 +118,7 @@ ActiveRecord::Schema.define(version: 2022_07_05_044309) do
   end
 
   create_table "jpears", force: :cascade do |t|
+    t.integer "farmer_id", null: false
     t.string "name", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -124,18 +129,18 @@ ActiveRecord::Schema.define(version: 2022_07_05_044309) do
     t.integer "order_id", null: false
     t.integer "product_type_id", null: false
     t.integer "total", null: false
-    t.integer "status", default: 0, null: false
+    t.integer "postcode", null: false
+    t.string "address", null: false
+    t.string "name", null: false
+    t.string "name_kana", null: false
+    t.integer "phone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "postcode", null: false
-    t.string "address", null: false
-    t.string "name", null: false
-    t.string "name_kana", null: false
-    t.integer "phone_number", null: false
+    t.integer "status", default: 0, null: false
     t.integer "bill", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

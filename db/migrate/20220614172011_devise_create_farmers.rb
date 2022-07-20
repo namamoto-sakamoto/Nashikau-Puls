@@ -37,6 +37,7 @@ class DeviseCreateFarmers < ActiveRecord::Migration[6.1]
       t.string :phone_number, null: false
       t.string :address, null: false
       t.string :postcode, null: false
+      
       # t.boolean :is_active, null: false, default: true
 
       t.timestamps null: false

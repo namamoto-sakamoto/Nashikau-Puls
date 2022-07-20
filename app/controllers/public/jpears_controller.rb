@@ -1,6 +1,7 @@
 class Public::JpearsController < ApplicationController
   def index
-    @jpears = Jpear.all
+    @jpears = Jpear.where(farmer_id: current_farmer.id)
+    
   end
 
   def new
@@ -9,6 +10,7 @@ class Public::JpearsController < ApplicationController
   
   def create
     @jpear = Jpear.new(jpear_params)
+    @jpear.farmer_id = current_farmer.id
     if @jpear.save
       flash[:notice] = "新しく品種が登録されました"
       redirect_to public_jpears_path
@@ -20,7 +22,6 @@ class Public::JpearsController < ApplicationController
   def show
     @jpear = Jpear.find(params[:id])
     @product_types = @jpear.product_types
-    byebug
     @product_type = ProductType.new
   end
 

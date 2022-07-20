@@ -4,7 +4,11 @@ class CreateOrderDetails < ActiveRecord::Migration[6.1]
       t.integer :order_id, null: false
       t.integer :product_type_id, null: false
       t.integer :total, null: false
-      t.integer :status, null: false, default: 0
+      t.integer :postcode, null: false
+      t.string :address, null: false
+      t.string :name, null: false
+      t.string :name_kana, null: false
+      t.integer :phone_number, null: false
 
       t.timestamps
     end

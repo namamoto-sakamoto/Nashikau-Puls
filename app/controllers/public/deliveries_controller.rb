@@ -1,11 +1,10 @@
 class Public::DeliveriesController < ApplicationController
   def show
     @delivery = Delivery.new
-    @deliveries = Delivery.where(params[:id])
+    @deliveries = Delivery.where(customer_id: params[:id])
     @customer = Customer.find(params[:id])
   end
   
-  # createがうまくいかない
   def create
     @delivery = Delivery.new(delivery_params)
     if @delivery.save
