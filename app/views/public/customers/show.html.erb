@@ -1,0 +1,39 @@
+<h4><%= @customer.full_name %>様</h4>
+
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <td>氏名</td>
+      <td><%= @customer.full_name %></td>
+    </tr>
+    <tr>
+      <td>フリガナ</td>
+      <td><%= @customer.full_name_kana %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= @customer.postcode %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td>連絡先電話番号</td>
+      <td><%= @customer.phone_number %></td>
+    </tr>
+     <tr>
+      <td>メモ</td>
+      <td><%= @customer.memo %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="active">
+      <%= link_to "編集", edit_public_customer_path(@customer.id), class: "btn btn-warning" %>
+      <%= link_to "配送先一覧へ", public_delivery_path, class: "btn btn-info" %>
+      <%= link_to "戻る", public_customers_path, class: "btn btn-outline-success" %>
+    </div> 

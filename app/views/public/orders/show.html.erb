@@ -1,0 +1,27 @@
+<h4>注文履歴一覧画面</h4>
+<table class="table table-borderd">
+  <thead class="table-secondary">
+    <tr>
+      <th>注文日</th>
+      <th>氏名</th>
+      <th>品種</th>
+      <th>商品名</th>
+      <th>徴収金額</th>
+      <th>ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime('%Y/%m/%d/') %></td>
+        <td><%= order.customer_id.name %></td>
+        <td><%= order.jpear.name %></td>
+        <td><%= order.product_type.item_name %></td>
+        <td><%= @total %></td>
+        <td><%= order.cart.statuses_i18n[order.status] %></td>
+        <td><%= link_to public_order_detail_path(order.id), class: "btn btn-info" do %>詳細<% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

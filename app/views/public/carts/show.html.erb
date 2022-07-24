@@ -1,0 +1,59 @@
+<h4>カート</h4>
+<div class="cart_table">
+ <table class="table table-bordered">
+    <thead class="table-secondary">
+      <th>品種</th>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>個数</th>
+      <th>小計</th>
+    </thead>
+    <tbody>
+      <% @total = 0 %>
+      <% @carts.each do |cart| %>
+        <tr>
+          <td>
+            <%= cart.jpear.name %>
+          </td>
+          <td>
+            <%= cart.product_type.item_name %>
+          </td>  
+          <td>
+            <%= cart.product_type.tax_price.to_s(:delimited) %>
+          </td>
+          <td>
+            <%= form_with model: cart, local:true do |f| %>
+              <%= f.select :amount, *[1..40] %>
+              <%= f.submit '変更', class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
+          <td>
+            <%= cart.subtotal.to_s(:delimited) %>
+          </td>
+          <td>
+            <%= link_to '削除する', public_cart_path(cart.id),  method: :delete, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+        <% @total += cart.subtotal %>
+      <% end %>
+    </tbody>
+  </table>  
+<div>
+<div class="order_back_btn">
+  <%= link_to '買い物を続ける', new_public_cart_path, class: "btn btn-sm btn-info" %>
+</div>
+<div class="status_btn">
+  <div class="receipt_status">
+    <%= f.radio_button :status, Order.status.key(0) %>
+    <!-- config/locales/ja.ymlに定義した英語に対応した日本語の呼び出し(なぽ)-->
+    <%= f.label :status, Order.status_i18n[:receipt] %>
+  </div>
+  <div class="accrued_status">
+    <%= f.radio_button :status, Order.status.key(1) %>
+    <%= f.label :status, Order.status_i18n[:accrued] %>
+  </div>
+</div>  
+<div class="order_confirm_btn">
+  <%= link_to '注文を確定する', public_order_path, class: "btn btn-lg btn-success" %>
+</div>
+  

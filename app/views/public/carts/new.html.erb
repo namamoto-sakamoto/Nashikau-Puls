@@ -1,0 +1,92 @@
+<h4>注文フォーム</h4>
+<div class="table_block">
+  <%= form_with model:@cart, url: public_carts_path, method: :post, local:true do |f| %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>注文者</td>
+          <td><%= @customer.full_name %></td>
+          <%= f.hidden_field :customer_id, :value => @customer.id %>
+        </tr>
+        <tr>
+          <td><%= f.label :jpear, "品種" %></td>
+          <td>
+          <%= form_with model:@cart, url: public_carts_path, local:true do |f| %>
+            <%= f.select :jpear, @jpear.map{ |jpear| [jpear.name, jpear.id] }%>
+            <%= f.submit '選択', class: "btn btn-sm btn-success" %>
+          <% end %>  
+          </td>
+        </tr> 
+        <!--選択した品種で登録してある販売商品をチェックボックスで表示したい-->
+        <tr>
+          <th>商品名<th>
+          <th>値段<th>
+          <th>個数選択<th>
+        </tr>
+        <%= form_with model:@cart, url: public_carts_path, local:true do |f| %>
+        <tr>
+          <td><%= f.label :product_type, "販売商品" %></td>
+          <% @product_types.map do |p| %>
+            <td><%= p.item_name %></td>
+            <td><%= p.tax_price %></td>
+            <td><%= f.select :amount, *[1..40] %><td>
+          <% end  %>
+        </tr>
+        <% end %> 
+        <!--お届け先選択(ラジオボタン)-->
+        <%= form_with model:@cart, url: public_carts_path, local:true do |f| %>  
+          <tr>
+            <td><%= f.label :delivery, "お届け先" %></td>
+            <td>
+              <%= f.radio_button :delivery_method, "take_out" %>
+              <%= f.label :delivery_method, "お持ち帰り" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.radio_button :delivery_method, "registered_address" %>
+              <%= f.label :delivery_method, "登録済みの住所から選択" %>
+              <%#= f.select :delivery_id, options_from_collection_for_select(@deliveries) %>
+              <%#= f.select :address_id, options_from_collection_for_select(@delivery, :id, :address_display) %>
+            </td>
+          </tr>  
+          <table class="table table-borderless">
+            <tr>
+              <td>
+                <%= f.radio_button :delivery_method, "new_address" %>
+                <%= f.label :delivery_method, "新規送り先住所を登録" %>
+              </td>
+            </tr>
+            <tr>
+              <th><%= f.label :postcode, "郵便番号" %></th>
+              <td><%= f.text_field :postcode %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :address, "住所" %></th>
+              <td><%= f.text_field :address %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :name, "宛名" %></th>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :name_kana, "宛名（カナ）" %></th>
+              <td><%= f.text_field :name_kana %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :phone_number, "連絡先電話番号" %></th>
+              <td><%= f.text_field :phone_number %></td>
+            </tr>  
+          </table>
+        <% end %>  
+        <tr>
+          <td><%= f.label :memo, "メモ" %></td>
+          <td><%= f.text_field :memo %></td>
+        </tr>
+        <div>
+          <tr><%= f.submit 'カートへ追加する', class: "btn btn-warning" %></tr>
+        </div>
+      </tbody>
+    </table>
+  <% end %>  
+</div>  

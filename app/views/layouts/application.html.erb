@@ -1,16 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShonoNashien</title>
+    <title>Nashikau!+</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
-    <%= yield %>
+    <div class="container-fluid all_display">
+      <div class="row">
+        <div class="col-2 bg-info text-white all_display">
+          <!--サイドバー-->
+          <% if farmer_signed_in? %>
+            <%= render'layouts/sidebar' %>
+          <% end %> 
+        </div>  
+        <div class="col-10">
+          <!--ヘッダー-->
+          <header class="<%= (admin_signed_in? ? "admin_header" : "" ) %>">
+            <div class="header-content">
+            <h3 class="logo">Nashikau!+</h3> 
+              <ul class="flex">
+                <% if admin_signed_in? %>
+                  <li><%= link_to '農園一覧',  admin_jpear_farmers_path %></li>
+                  <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                <% elsif farmer_signed_in? %>
+                  <li><%= link_to 'ログアウト', destroy_farmer_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to '新規登録', new_farmer_registration_path %></li>
+                  <li><%= link_to 'ログイン', new_farmer_session_path %></li>
+                <% end %>
+              </ul>
+              <% if admin_signed_in? %>
+                <%= form_tag(admin_search_path, method: :get) do %>
+                  <%= text_field_tag "search[content]", "", :placeholder =>"会員: 姓,名,セイ,メイ / 商品: 商品名" %>
+                  <%= select_tag "search[model]", options_for_select({ "会員" => "customer", "商品" => "item" }) %>
+                  <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
+                  <%= submit_tag '検索', class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </div>
+          </header>
+          <main>
+            <%= yield %>
+          </main>
+        </div>
+      </div>
+    </div>  
   </body>
 </html>
