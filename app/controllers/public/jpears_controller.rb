@@ -1,7 +1,7 @@
 class Public::JpearsController < ApplicationController
   def index
     @jpears = Jpear.where(farmer_id: current_farmer.id)
-    
+  
   end
 
   def new
@@ -24,13 +24,29 @@ class Public::JpearsController < ApplicationController
     @product_types = @jpear.product_types
     @product_type = ProductType.new
   end
+  
+  def update
+    @jpear = Jpear.find(params[:id])
+    if @jpear.update(jpear_params)
+      flash[:success] = "販売ステータスのアップデートが完了しました"
+      redirect_to public_jpear_path(@jpear)
+    else
+      @jpear = Jpear.find(params[:id])
+      @product_types = @jpear.product_types
+      @product_type = ProductType.new
+      render :show
+    end
+  end  
 
-  # def edit
-  # end
+  def destroy
+    @jpear = Jpear.find(params[:id])
+    @jpear.destroy
+    redirect_to public_jpears_path
+  end
   
   private
   
   def jpear_params
-    params.require(:jpear).permit(:image, :name, :stutes)
+    params.require(:jpear).permit(:image, :name, :status)
   end 
 end

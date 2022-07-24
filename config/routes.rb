@@ -18,7 +18,7 @@ devise_for :farmers,skip: [:passwords], controllers: {
     resources :order_details, only: [:index, :show]
     resources :orders, only: [:show, :create, :update, :index]
     resources :product_types, only: [:index, :create, :destroy]
-    resources :jpears, only: [:index, :new, :create, :show]
+    resources :jpears, only: [:index, :new, :create, :show, :update, :destroy]
     resources :deliveries, only: [:show, :create, :edit, :update]
     resources :customers, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :carts, only: [:new, :show, :update, :create, :destroy]

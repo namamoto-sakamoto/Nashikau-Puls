@@ -4,19 +4,37 @@
     <%= image_tag @jpear.get_image(200,200) %>
   </div>
   <div class="col-3">
-    <table class="table table-borderless">
-      <tbody>
-        <tr>
-          <td><%= @jpear.name %></td>
-        </tr>
-        <tr>
-          <td><%= @jpear.status %></td>
-        </tr>
-        <tr>
-          <td><%= link_to "一覧画面へ戻る", public_jpears_path, class: "btn btn-outline-info btn-sm" %></td>
-        </tr>
-      </tbody>
-    </table>
+    <%= form_with model:@jpear, url: public_jpear_path, method: :patch, local:true do |f| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td><%= @jpear.name %></td>
+          </tr>
+          <tr>
+            <td>
+              <% if @jpear.status == 'sale' %>
+                <%= f.radio_button :status, "sold" %>
+                <%= f.label :status, "販売停止中", class: "text-active" %>
+                <%= f.radio_button :status, "sale", {:checked => true}  %>
+                <%= f.label :status, "販売中", class: "text-invalid" %>
+              <% else %>
+                <%= f.radio_button :status, "sold" %>
+                <%= f.label :status, "販売停止中", class: "text-active" %>
+                <%= f.radio_button :status, "sale" %>
+                <%= f.label :status, "販売中", class: "text-invalid" %>
+              <% end %>
+              <%= f.submit '更新', class: "btn btn-success btn-sm" %>
+            </td>  
+          </tr>
+          <tr>
+            <td><%= link_to "削除", public_jpear_path(@jpear.id), method: :delete, "data-confirm" => "品種を削除します。よろしいでしょうか？",class: "btn btn-danger btn-sm" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "一覧画面へ戻る", public_jpears_path, class: "btn btn-outline-info btn-sm" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>   
   </div>
 </div>  
 
