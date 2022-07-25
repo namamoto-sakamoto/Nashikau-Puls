@@ -1,5 +1,6 @@
 <h4>顧客情報一覧</h4>
-<%= link_to "新規顧客登録ボタン＋", new_public_customer_path %>
+<%= link_to "新規顧客登録", new_public_customer_path %>
+<i class="fa-solid fa-user-plus"></i>
 <table class="table">
   <thead>
     <tr>
@@ -22,10 +23,30 @@
           <% end %>
         </td>
     　　<td><%= customer.phone_number %></td>
-        <td><%= link_to "注文", new_public_cart_path(customer.id), class: "btn btn-success" %></td>
-        <td><%= link_to "配送先一覧へ", public_delivery_path(customer.id), class: "btn btn-info" %></td>
-        <td><%= link_to "編集", edit_public_customer_path(customer.id), class: "btn btn-warning" %></td>
-        <td><%= link_to "削除", public_customer_path(customer.id), method: :delete, "data-confirm" => "#{customer.full_name}を削除します。よろしいでしょうか？",class: "btn btn-danger" %></td>
+        <td class="btn btn-success">
+          <%= link_to(new_public_cart_path(customer.id)) do %>
+            <i class="fa-solid fa-plus"></i>
+            注文
+          <% end %>  
+        </td>
+        <td class="btn btn-info">
+          <%= link_to(public_delivery_path(customer.id)) do %>
+            <i class="fa-solid fa-truck"></i>
+            配送先
+          <% end %>
+        </td>
+        <td class="btn btn-warning">
+          <%= link_to(edit_public_customer_path(customer.id)) do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+            編集
+          <% end %>
+        </td>
+        <td class="btn btn-danger">
+          <%= link_to public_customer_path(customer.id), method: :delete, data:{confirm:"#{customer.full_name}を削除します。よろしいでしょうか？"} do %>
+            <i class="fa-regular fa-trash-can"></i>
+            削除
+          <% end %>  
+        </td>
     　</tr>
     <% end %>
   </tbody>  

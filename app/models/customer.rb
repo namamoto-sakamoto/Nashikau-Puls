@@ -4,6 +4,9 @@ class Customer < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :orders
   
+  # バリデーション
+  validates :last_name, :first_name, :first_name_kana, :last_name_kana, :postcode, :address, :phone_number, presence: true
+  
   def full_name
     last_name + " " + first_name
   end

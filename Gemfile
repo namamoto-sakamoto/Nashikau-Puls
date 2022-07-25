@@ -32,9 +32,8 @@ gem 'devise'
 gem "enum_help"
 gem 'image_processing', '~> 1.2'
 gem 'mechanize'
-gem 'react-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
 gem 'rails-i18n'
+gem "font-awesome-sass", "~> 6.1.1"
 
 
 group :development, :test do

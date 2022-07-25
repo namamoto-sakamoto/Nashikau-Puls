@@ -19,7 +19,9 @@
       </td>
     </tr>
     <td>
-      <%= f.submit '品種新規登録', class: "btn btn-warning" %>
+      <%= f.button :type => "submit", class: 'btn btn-warning' do %>
+        <div><i class="fa-solid fa-circle-check"></i> 品種を追加する</div>
+      <% end %>  
     </td>
   </table>
 <% end %>

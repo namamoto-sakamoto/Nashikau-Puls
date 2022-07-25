@@ -1,11 +1,18 @@
   ja:
     activerecord:
-      errors:
+      error_messages:
         messages:
           record_invalid: "バリデーションに失敗しました: %{errors}"
-
-  
-  ja:
+      attributes:
+        customer:
+          last_name: "氏名（姓）"
+          first_name: "氏名（名）"
+          first_name_kana: "氏名（メイ）"
+          last_name_kana: "氏名（セイ）"
+          postcode: "郵便番号"
+          address: "住所"
+          phone_number: "連絡先電話番号"
+          
     enums:
       jpear:
         status:
@@ -16,3 +23,5 @@
         status:
           receipt: "領収"
           accrued: "未収"
+          
+          

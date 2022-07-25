@@ -1,3 +1,4 @@
+<%= render 'layouts/error_messages', obj: @customer %>
 <h4>顧客新規登録</h4>
 <%= form_with model:@customer, url: public_customers_path, method: :post, local:true do |f| %>
   <table class="table">
@@ -35,6 +36,8 @@
     </tr> 
   </table>
   <div>
-    <%= f.submit '新規登録', class: "btn btn-success" %>
+    <%= f.button :type => "submit", class: 'btn btn-success' do %>
+      <div><i class="fa-solid fa-user-plus"></i> 登録 </div>
+    <% end %>
   </div> 
 <% end %>  
