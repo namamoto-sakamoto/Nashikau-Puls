@@ -11,30 +11,29 @@
         <tr>
           <td><%= f.label :jpear, "品種" %></td>
           <td>
-          <%= form_with model:@cart, url: public_carts_path, local:true do |f| %>
-            <%= f.select :jpear, @jpear.map{ |jpear| [jpear.name, jpear.id] }%>
-            <%= f.submit '選択', class: "btn btn-sm btn-success" %>
-          <% end %>  
+            <%= f.select(:jpear, @jpear.map{ |jpear| [jpear.name, jpear.id] }, {id: "jpear_select"})%>
           </td>
         </tr> 
         <!--選択した品種で登録してある販売商品をチェックボックスで表示したい-->
         <tr>
+          <th></th>
           <th>商品名<th>
           <th>値段<th>
           <th>個数選択<th>
         </tr>
-        <%= form_with model:@cart, url: public_carts_path, local:true do |f| %>
         <tr>
           <td><%= f.label :product_type, "販売商品" %></td>
+          <div class="field">
+            <%= f.label :梨タイプ %><br>
+            <%= f.select(:product_type, @product_types, {id: 'product_type_select'}) %>
+          </div>
           <% @product_types.map do |p| %>
-            <td><%= p.item_name %></td>
-            <td><%= p.tax_price %></td>
+            <td><%= p[0] %></td>
+            <td><%= p[1] %></td>
             <td><%= f.select :amount, *[1..40] %><td>
           <% end  %>
         </tr>
-        <% end %> 
         <!--お届け先選択(ラジオボタン)-->
-        <%= form_with model:@cart, url: public_carts_path, local:true do |f| %>  
           <tr>
             <td><%= f.label :delivery, "お届け先" %></td>
             <td>
@@ -78,15 +77,31 @@
               <td><%= f.text_field :phone_number %></td>
             </tr>  
           </table>
-        <% end %>  
         <tr>
-          <td><%= f.label :memo, "メモ" %></td>
+          <th><%= f.label :memo, "メモ" %></th>
           <td><%= f.text_field :memo %></td>
         </tr>
         <div>
-          <tr><%= f.submit 'カートへ追加する', class: "btn btn-warning" %></tr>
+          <tr>
+            <%= f.button :type => "submit", class: 'btn btn-warning mt-3' do %>
+              <div><i class="fa-solid fa-cart-plus"></i> カートへ追加する </div>
+            <% end %>
+          </tr>
         </div>
       </tbody>
     </table>
   <% end %>  
 </div>  
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    // 品種選択
+    $('#jpear_select').change(function(){
+      var jpear_id = 1;
+      byebug
+      $.get("<%= public_carts_product_type_select_path %>",
+        { jpear_id: jpear_id },
+        function(data){ }
+      );
+    });
+</script>

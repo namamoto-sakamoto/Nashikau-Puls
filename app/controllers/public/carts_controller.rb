@@ -7,9 +7,15 @@ class Public::CartsController < ApplicationController
     @carts = Cart.where(customer_id: params[:format])
     @customer = Customer.find(params[:format])
     @deliveries = Delivery.where(customer_id: @customer.id)
-    @product_types = ProductType.where(params[:format])
+    @product_types = ProductType.none
     @jpear = Jpear.where(params[:format])
-  end  
+  end 
+  
+  def product_type_select
+    @product_types = ProductType.where(jpear_id: params[:format]).pluck(:item_name, :tax_price, :id)
+    byebug
+  end
+  
   # カートに追加するボタンでcreate
   def create
     @product_types = ProductType.where(jpear_id: params[:cart][:jpear])
