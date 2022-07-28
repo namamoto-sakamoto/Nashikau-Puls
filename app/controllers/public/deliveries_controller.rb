@@ -10,9 +10,9 @@ class Public::DeliveriesController < ApplicationController
     if @delivery.save
       redirect_to public_delivery_path(@delivery.customer_id)
     else
-      @delivery = Delivery.new
-      @deliveries = Delivery.where(params[:id])
-      @customer = Customer.find(params[:id])
+      @customer = params.require(:delivery).permit(:customer_id)
+      @deliveries = Delivery.where(customer_id: @customer[:customer_id])
+      @customer = Customer.find(@customer[:customer_id])
       render :show
     end  
   end  
@@ -35,6 +35,6 @@ class Public::DeliveriesController < ApplicationController
   private
   
   def delivery_params
-    params.require(:delivery).permit(:customer_id, :name, :name_kana, :postcode, :address, :postcode, :phone_number)
+    params.require(:delivery).permit(:customer_id, :name, :name_kana, :postcode, :address, :phone_number)
   end
 end

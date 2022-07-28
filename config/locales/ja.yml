@@ -12,6 +12,21 @@
           postcode: "郵便番号"
           address: "住所"
           phone_number: "連絡先電話番号"
+        
+        delivery:
+          name: "宛名"
+          name_kana: "宛名（カナ）"
+          postcode: "郵便番号"
+          address: "住所"
+          phone_number: "連絡先電話番号"
+          
+        jpear:
+          image: "梨画像"
+          name: "品種名"
+          
+        product_type:
+          item_name: "販売商品名"
+          tax_price: "税込金額"
           
     enums:
       jpear:
@@ -24,4 +39,13 @@
           receipt: "領収"
           accrued: "未収"
           
-          
+      shipping_address:
+        take_out: "お持ち帰り"
+        my_address: "ご自身の住所"
+        registered_address: "登録済みの住所"
+      
+      order:
+        status:
+          receipt: "領収"
+          accrued: "未収"
+      

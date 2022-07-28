@@ -3,5 +3,6 @@ class Public::OrderDetailsController < ApplicationController
   end
 
   def show
+    @order_details = OrderDetail.where(order_id: params[:id])
   end
 end

@@ -9,6 +9,7 @@ class CreateCarts < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.string :name_kana, null: false
       t.integer :phone_number, null: false
+      t.integer :shipping_address, null: false, default: 0
 
       t.timestamps
     end

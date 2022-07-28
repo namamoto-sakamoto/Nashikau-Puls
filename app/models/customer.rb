@@ -13,5 +13,9 @@ class Customer < ApplicationRecord
   
    def full_name_kana
     last_name_kana + " " + first_name_kana
+   end
+   
+   def my_address_display
+    '〒' + postcode.to_s + ' ' + address
   end
 end
