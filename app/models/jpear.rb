@@ -3,6 +3,9 @@ class Jpear < ApplicationRecord
   has_one_attached :image
   belongs_to :farmer
   
+  # バリデーション
+  validates :image, :name, :status, presence: true
+  
   # 画像未投稿時の対処
   def get_image(width, height)
     unless image.attached?

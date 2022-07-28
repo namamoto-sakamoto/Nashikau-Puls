@@ -1,4 +1,4 @@
-<h4>編集</h4>
+<h4>送り先の情報編集</h4>
 <%= form_with model:@delivery, url: public_delivery_path, method: :patch, local:true do |f| %>
   <table class="table table-borderless">
     <tr>
@@ -22,5 +22,13 @@
       <td><%= f.text_field :phone_number %></td>
     </tr>
   </table>
-  <%= f.submit "変更を保存", class: "btn btn-success" %>
+  <div class="btn btn-outline-info ml-3">
+    <%= link_to public_delivery_path(@delivery.id) do %>
+      <i class="fa-solid fa-arrow-rotate-left"></i>
+     送り先一覧へ戻る
+    <% end %>
+  </div>
+  <%= f.button :type => "submit", class: 'btn btn-success ml-3' do %>
+    <div><i class="fa-solid fa-user-plus"></i> 変更を保存 </div>
+  <% end %>
 <% end %>

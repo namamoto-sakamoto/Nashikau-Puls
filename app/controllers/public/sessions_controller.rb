@@ -27,11 +27,11 @@ class Public::SessionsController < Devise::SessionsController
   # end
   
    def after_sign_in_path_for(resource)
-    public_order_details_path
+    public_customers_path
   end
 
   def after_sign_out_path_for(resource)
-    public_path
+    root_path
   end
   
     protected

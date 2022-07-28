@@ -1,5 +1,6 @@
 <h4>品種新規登録</h4>
 <%= form_with model:@jpear, url: public_jpears_path, method: :post, local:true do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
   <table class="table table-borderless">
     <tr>
       <td><%= f.label :image, "梨画像" %></td>

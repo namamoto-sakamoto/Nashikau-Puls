@@ -1,7 +1,8 @@
 class Public::CustomersController < ApplicationController
   
   def index
-    @customers = Customer.all
+    @customers = Customer.where(farmer_id: current_farmer.id)
+    @jpears = Jpear.where(farmer_id: current_farmer.id)
   end
 
   def new

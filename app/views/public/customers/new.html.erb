@@ -1,43 +1,55 @@
-<%= render 'layouts/error_messages', obj: @customer %>
 <h4>顧客新規登録</h4>
-<%= form_with model:@customer, url: public_customers_path, method: :post, local:true do |f| %>
-  <table class="table">
-    <tr>
-      <td><%= f.label :last_name, "氏名（姓）" %></td>
-      <td><%= f.text_field :last_name, autofocus: true %></td>
-    </tr>    
-    <tr>
-      <td><%= f.label :first_name, "氏名（名）" %></td>
-      <td><%= f.text_field :first_name %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :last_name_kana, "氏名（セイ）" %></td>
-      <td><%= f.text_field :last_name_kana %></td>
-    </tr>  
-    <tr>
-      <td><%= f.label :first_name_kana, "氏名（メイ）" %></td>
-      <td><%= f.text_field :first_name_kana %></td>
-    </tr>  
-    <tr>
-      <td><%= f.label :postcode, "郵便番号（ハイフンなし7桁）" %></td>
-      <td><%= f.text_field :postcode %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :address, "住所(郵便番号から自動入力)" %></td>
-      <td><%= f.text_field :address %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :phone_number, "連絡先電話番号" %></td>
-      <td><%= f.text_field :phone_number %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :memo, "メモ" %></td>
-      <td><%= f.text_field :memo %></td>
-    </tr> 
-  </table>
-  <div>
-    <%= f.button :type => "submit", class: 'btn btn-success' do %>
-      <div><i class="fa-solid fa-user-plus"></i> 登録 </div>
+<div class="row">
+  <div class="col-10 offset-1">
+    <%= form_with model:@customer, url: public_customers_path, method: :post, local:true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <table class="table">
+        <tr>
+          <td><%= f.label :last_name, "氏名（姓）" %></td>
+          <td><%= f.text_field :last_name, autofocus: true %></td>
+        </tr>    
+        <tr>
+          <td><%= f.label :first_name, "氏名（名）" %></td>
+          <td><%= f.text_field :first_name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :last_name_kana, "氏名（セイ）" %></td>
+          <td><%= f.text_field :last_name_kana %></td>
+        </tr>  
+        <tr>
+          <td><%= f.label :first_name_kana, "氏名（メイ）" %></td>
+          <td><%= f.text_field :first_name_kana %></td>
+        </tr>  
+        <tr>
+          <td><%= f.label :postcode, "郵便番号（ハイフンなし7桁）" %></td>
+          <td><%= f.text_field :postcode %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :address, "住所" %></td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :phone_number, "連絡先電話番号" %></td>
+          <td><%= f.text_field :phone_number %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :memo, "メモ" %></td>
+          <td><%= f.text_field :memo %></td>
+        </tr> 
+      </table>
+      <div>
+        <div>
+          <%= f.button :type => "submit", class: 'btn btn-success ml-3' do %>
+            <div><i class="fa-solid fa-user-plus"></i> 登録 </div>
+          <% end %>
+        </div>
+        <div class="btn btn-outline-info ml-3 mt-3">
+          <%= link_to public_customers_path do %>
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+            顧客一覧へ戻る
+          <% end %>
+        </div>
+      </div>  
     <% end %>
-  </div> 
-<% end %>  
+  </div>
+</div>  

@@ -1,34 +1,8 @@
 <h4>送り先一覧</h4>
-<table class="table">
-  <thead>
-    <tr>
-  　　<th>氏名</th>
-  　　<th>住所</th>
-  　　<th>連絡先電話番号</th>
-  　　<th></th>
-  　</tr>
-  </thead>    
-  <tbody>
-    <% @deliveries.each do |delivery| %>
-      <tr>
-    　　<td>
-    　　    <%#= link_to public_customer_path(customer.id) do %>
-            <%= delivery.name %>
-          <%#end %>
-        </td>
-    　　<td>
-    　　    <%= delivery.postcode %><br>
-    　　    <%= delivery.address %> 
-    　   </td>
-    　   <td><%= delivery.phone_number %></td>
-        <td><%= link_to "編集", edit_public_delivery_path(delivery.id), class: "btn btn-info" %></td>
-      </tr>
-    <% end %>  
-  </tbody>  
-</table>
 <%= form_with model:@delivery, url: public_deliveries_path, method: :post, local:true do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
   <div class="row">
-    <div class="col-8 offset-1 mt-4">
+    <div class="col-9 offset-1 mt-5">
       <h4>送り先新規登録</h4>
       <table class="table table-borderless">
         <tr>
@@ -44,7 +18,7 @@
           <td><%= f.text_field :postcode %></td>
         </tr>  
         <tr>
-          <td><%= f.label :address, "住所(郵便番号から自動入力)" %></td>
+          <td><%= f.label :address, "住所" %></td>
           <td><%= f.text_field :address %></td>
         </tr>  
         <tr>
@@ -53,12 +27,57 @@
         </tr>
         <%= f.hidden_field :customer_id, :value => @customer.id %>
         <tr>  
-          <%= f.submit '新規登録', class: "btn btn-success" %>
-        </tr>  
+          <td>
+            <%= f.button :type => "submit", class: 'btn btn-success' do %>
+              <div><i class="fa-solid fa-truck"></i> 新規登録 </div>
+            <% end %>
+          </td>
+        </tr>
       </table>
      </div>
   </div>    
 <% end %>
-<div class="back_btn">
- <%= link_to "戻る", public_customer_path(@customer.id), class: "btn btn-warning" %>
+
+<div class="row">
+  <div class="col-8 offset-1">  
+    <table class="table">
+      <thead>
+        <tr>
+      　　<th>氏名</th>
+      　　<th>住所</th>
+      　　<th>連絡先電話番号</th>
+      　　<th></th>
+      　</tr>
+      </thead>    
+      <tbody>
+        <% @deliveries.each do |delivery| %>
+          <tr>
+        　　<td>
+        　　    <%#= link_to public_customer_path(customer.id) do %>
+                <%= delivery.name %>
+              <%#end %>
+            </td>
+        　　<td>
+        　　    <%= delivery.postcode %><br>
+        　　    <%= delivery.address %> 
+        　   </td>
+        　   <td><%= delivery.phone_number %></td>
+            <td class="btn btn-warning">
+              <%= link_to edit_public_delivery_path(delivery.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+                編集
+              <% end %>
+            </td>
+          </tr>
+        <% end %>  
+      </tbody>  
+    </table>
+  </div>
+</div>    
+
+<div class="btn btn-outline-info ml-3">
+ <%= link_to public_customer_path(@customer.id) do %>
+   <i class="fa-solid fa-arrow-rotate-left"></i>
+   顧客情報へ戻る
+ <% end %>
 </div>

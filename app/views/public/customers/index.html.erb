@@ -1,53 +1,67 @@
 <h4>顧客情報一覧</h4>
-<%= link_to "新規顧客登録", new_public_customer_path %>
-<i class="fa-solid fa-user-plus"></i>
-<table class="table">
-  <thead>
-    <tr>
-  　　<th>ID</th>
-  　　<th>氏名</th>
-  　　<th>連絡先</th>
-  　　<th></th>
-  　　<th></th>
-  　　<th></th>
-  　　<th></th>
-  　</tr>
-  </thead>    
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.id %></td>
-    　　<td>
-    　　    <%= link_to public_customer_path(customer.id) do %>
-            <%= customer.full_name %>
-          <% end %>
-        </td>
-    　　<td><%= customer.phone_number %></td>
-        <td class="btn btn-success">
-          <%= link_to(new_public_cart_path(customer.id)) do %>
-            <i class="fa-solid fa-plus"></i>
-            注文
-          <% end %>  
-        </td>
-        <td class="btn btn-info">
-          <%= link_to(public_delivery_path(customer.id)) do %>
-            <i class="fa-solid fa-truck"></i>
-            配送先
-          <% end %>
-        </td>
-        <td class="btn btn-warning">
-          <%= link_to(edit_public_customer_path(customer.id)) do %>
-            <i class="fa-regular fa-pen-to-square"></i>
-            編集
-          <% end %>
-        </td>
-        <td class="btn btn-danger">
-          <%= link_to public_customer_path(customer.id), method: :delete, data:{confirm:"#{customer.full_name}を削除します。よろしいでしょうか？"} do %>
-            <i class="fa-regular fa-trash-can"></i>
-            削除
-          <% end %>  
-        </td>
-    　</tr>
-    <% end %>
-  </tbody>  
-</table>
+<div class="ml-5 mt-3">
+  <%= link_to "新規顧客登録", new_public_customer_path %>
+  <i class="fa-solid fa-user-plus"></i>
+</div>
+<div class="row">
+  <div class="col-12">
+    <table class="table">
+      <thead>
+        <tr>
+      　　<th>ID</th>
+      　　<th>氏名</th>
+      　　<th>連絡先</th>
+      　　<th>住所</th>
+      　　<th></th>
+      　　<th></th>
+      　　<th></th>
+      　　<th></th>
+      　　<th></th>
+      　　<th></th>
+      　</tr>
+      </thead>    
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+        　　<td>
+        　　    <%= link_to public_customer_path(customer.id) do %>
+                <%= customer.full_name %>
+              <% end %>
+            </td>
+        　　<td><%= customer.phone_number %></td>
+        　　<td><%= customer.address %></td>
+        　　<td></td>
+        　　<!--品種のセレクトボックス-->
+        　　<%= form_with model: customer, url: new_public_cart_path(customer.id), method: :get, local:true do |f| %>
+          　　<td>
+                <%= f.select :jpear, @jpears.map{ |jpear| [jpear.name, jpear.id] }, { include_blank: "品種を選択" } %>
+                <%= f.button :type => "submit", class: 'btn btn-success ml-2' do %>
+                  <div><i class="fa-solid fa-cart-plus"></i> 注文 </div>
+                <% end %>
+              </td>
+            <% end %>
+            <td class="btn btn-info ml-4">
+              <%= link_to public_delivery_path(customer.id) do %>
+                <i class="fa-solid fa-truck"></i>
+                送り先
+              <% end %>
+            </td>
+            <td class="btn btn-warning ml-4">
+              <%= link_to edit_public_customer_path(customer.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+                編集
+              <% end %>
+            </td>
+            <td class="btn btn-danger ml-4">
+              <%= link_to public_customer_path(customer.id), method: :delete, data:{confirm:"#{customer.full_name}を削除します。よろしいでしょうか？"} do %>
+                <i class="fa-regular fa-trash-can"></i>
+                削除
+              <% end %>  
+            </td>
+        　</tr>
+        <% end %>
+      </tbody>  
+    </table>
+  </div>
+</div>  

@@ -1,10 +1,10 @@
 <h4>品種詳細画面</h4>
 <div class="row">
-  <div class="col-5">
+  <div class="col-5 offset-1">
     <%= image_tag @jpear.get_image(200,200) %>
   </div>
-  <div class="col-3">
-    <%= form_with model:@jpear, url: public_jpear_path, method: :patch, local:true do |f| %>
+  <div class="col-4">
+    <%= form_with model:@jpear, url: public_jpear_path(@jpear), method: :patch, local:true do |f| %>
       <table class="table table-borderless">
         <tbody>
           <tr>
@@ -23,14 +23,28 @@
                 <%= f.radio_button :status, "sale" %>
                 <%= f.label :status, "販売中", class: "text-invalid" %>
               <% end %>
-              <%= f.submit '更新', class: "btn btn-success btn-sm" %>
+              <%= f.button :type => 'submit', class: 'btn btn-success btn-sm' do %>
+                <div><i class="fa-solid fa-apple-whole"></i> 更新 </div>
+              <% end %>
             </td>  
           </tr>
           <tr>
-            <td><%= link_to "削除", public_jpear_path(@jpear.id), method: :delete, "data-confirm" => "品種を削除します。よろしいでしょうか？",class: "btn btn-danger btn-sm" %></td>
+            <td class="btn btn-danger btn-sm ml-3 mt-2">
+              <%= link_to public_jpear_path(@jpear.id), method: :delete, "data-confirm" => "品種を削除します。よろしいでしょうか？" do %>
+                <i class="fa-regular fa-trash-can"></i>
+                この品種を削除
+              <% end %>
+            </td>
           </tr>
           <tr>
-            <td><%= link_to "一覧画面へ戻る", public_jpears_path, class: "btn btn-outline-info btn-sm" %></td>
+            <td>
+              <div class="btn btn-outline-info mt-2">
+                <%= link_to public_jpears_path do %>
+                  <i class="fa-solid fa-arrow-rotate-left"></i>
+                  品種一覧へ戻る
+                <% end %>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -42,20 +56,24 @@
 <h5 class="mt-5 mb-3">販売商品　一覧・新規登録</h5>
 <div class="pt_new">
   <%= form_with model:@product_type, url: public_product_types_path, local:true do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   	<%= f.text_field :item_name, autofocus: true, :placeholder =>"販売商品名" %>
   	<%= f.text_field :tax_price, :placeholder =>"単価（税込）" %>円
   	<%= f.hidden_field :jpear_id, :value => @jpear.id %>
-  	<%= f.submit "商品登録", class: "btn btn-warning" %>
+  	<%= f.button :type　=> "submit", class: 'btn btn-warning' do %>
+  	   <div> 商品登録 <i class="fa-solid fa-apple-whole"></i></div>
+  	<% end %>
   <% end %>
 </div>  
 <div class ="row">
-  <div class="col-lg-6 offset-2 mt-5">
+  <div class="col-8 offset-1 mt-5">
     <table class="table table-striped">
       <thead>
         <tr>
           <th>ID</th>
           <th>販売商品名</th>
           <th>単価（税込）</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -64,7 +82,12 @@
             <td><%= product_type.id %></td>
             <td><%= product_type.item_name %></td>
             <td><%= product_type.tax_price %></td>
-            <td><%= link_to "削除", public_product_type_path(product_type.id), method: :delete, "data-confirm" => "商品を削除します。よろしいでしょうか？",class: "btn btn-danger" %></td>
+            <td class="btn btn-danger btn-sm">
+              <%= link_to public_product_type_path(product_type.id), method: :delete, "data-confirm" => "商品を削除します。よろしいでしょうか？" do %>
+                <i class="fa-regular fa-trash-can"></i>
+                削除
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

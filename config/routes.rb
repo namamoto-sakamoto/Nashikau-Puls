@@ -16,7 +16,7 @@ root to: "public/home#top"
   
   namespace :public do
     resources :order_details, only: [:index, :show]
-    resources :orders, only: [:show, :create, :update, :index]
+    resources :orders, only: [:show, :create, :update, :index, :destroy]
     resources :product_types, only: [:index, :create, :destroy]
     resources :jpears, only: [:index, :new, :create, :show, :update, :destroy]
     resources :deliveries, only: [:show, :create, :edit, :update]
