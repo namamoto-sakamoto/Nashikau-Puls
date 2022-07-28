@@ -10,9 +10,9 @@ import "channels"
 
 import "jquery";
 import "popper.js";
-import "bootstrap";
-import "../stylesheets/application.scss"
-import '@fortawesome/fontawesome-free/js/all'
+import 'bootstrap';
+import '../stylesheets/application';
+import '@fortawesome/fontawesome-free/js/all';
 
 //= require jquery
 //= require bootstrap-sprockets
