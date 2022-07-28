@@ -9,6 +9,7 @@
 
 main {
   margin: 0;
+  padding: 0;
 }
 
 .right_area {
@@ -70,10 +71,11 @@ nav {
 }
 
 // ヘッダー
-.header_area {
+header {
+  max-width: 100%;	
+	vertical-align: bottom;
   margin: 0;
   padding: 0;
-  width: 100%;
   background-color: honeydew;
 }
 
@@ -96,7 +98,8 @@ nav {
 
 
 .top_image {
-  width: 100%;
+  max-width: 100%;	
+	display: block;
 }
 
 .top_text {
@@ -109,7 +112,7 @@ nav {
   padding: 5px 10px;
   top: 50%;
   left: 0;
-  margin: 0;
+  margin-left: 40px;
 }
 
 // 徴収ステータスボタン

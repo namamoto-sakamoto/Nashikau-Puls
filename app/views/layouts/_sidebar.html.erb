@@ -1,5 +1,7 @@
 <div class="listings">
   <div class="listings_channels">
+    <% if admin_signed_in? %>
+    <% else %>
     <h3 class="listings_header">管理システム</h3>
     <div class="channel_list">
       <div><i class="fa-solid fa-yen-sign"></i><%= link_to "　 注文履歴一覧", public_order_path(current_farmer.id) %></div>
@@ -8,5 +10,6 @@
       <!--<div><i class="fa-solid fa-calendar-days"></i><%#= link_to "　カレンダー", public_customers_path %></div>-->
       <!--<div><i class="fa-solid fa-cloud-sun"></i><%#= link_to "　天気", public_customers_path %></div>-->
     </div>
+    <% end %>
   </div>
 </div>

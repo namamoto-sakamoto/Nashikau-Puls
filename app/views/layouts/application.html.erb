@@ -30,7 +30,7 @@
                 <ul class="flex">
                   <nav>
                     <% if admin_signed_in? %>
-                      <li><%= link_to '農園一覧',  admin_jpear_farmers_path %></li>
+                      <li><%= link_to '農園一覧',  admin_farmers_path %></li>
                       <li>
                         <%= link_to destroy_admin_session_path, method: :delete, data:{confirm:"ログアウトしてもよろしいでしょうか？"} do %>
                           <i class="fa-solid fa-right-from-bracket"></i>
@@ -59,14 +59,14 @@
                       </li>
                     <% end %>
                   </ul>
-                  <% if admin_signed_in? %>
-                    <%= form_tag(admin_search_path, method: :get) do %>
-                      <%= text_field_tag "search[content]", "", :placeholder =>"会員: 姓,名,セイ,メイ / 商品: 商品名" %>
-                      <%= select_tag "search[model]", options_for_select({ "会員" => "customer", "商品" => "item" }) %>
-                      <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
-                      <%= submit_tag '検索', class: "btn btn-primary" %>
-                    <% end %>
-                  <% end %>
+                  <%# if admin_signed_in? %>
+                    <%#= form_tag(admin_search_path, method: :get) do %>
+                      <%#= text_field_tag "search[content]", "", :placeholder =>"会員: 姓,名,セイ,メイ / 商品: 商品名" %>
+                      <%#= select_tag "search[model]", options_for_select({ "会員" => "customer", "商品" => "item" }) %>
+                      <%#= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
+                      <%#= submit_tag '検索', class: "btn btn-primary" %>
+                    <%# end %>
+                  <%# end %>
                 </div>
               </nav>  
             </header>
