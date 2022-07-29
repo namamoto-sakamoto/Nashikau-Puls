@@ -40,7 +40,7 @@ class Public::SessionsController < Devise::SessionsController
      @farmer = Farmer.find_by(email: params[:farmer][:email].downcase)
      return if !@farmer
        if @farmer.valid_password?(params[:farmer][:password]) && @farmer.is_deleted == true
-        flash[:notice] = "退会済みです。申し訳ございませんが、再度ご登録をしてご利用ください。"
+        flash[:alert] = "退会済みです。申し訳ございませんが、再度ご登録をしてご利用ください。"
         redirect_to new_farmer_registration_path
        end
    end

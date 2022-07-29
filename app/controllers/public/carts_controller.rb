@@ -34,17 +34,21 @@ class Public::CartsController < ApplicationController
       @cart.name_kana = @customer.first_name_kana + @customer.last_name_kana
       @cart.phone_number = @customer.phone_number
     when '2' # 登録済みの住所
-      @delivery = Delivery.find(params[:cart][:delivery_id])
-      @cart.postcode = @delivery.postcode
-      @cart.address = @delivery.address
-      @cart.name = @delivery.name
-      @cart.name_kana = @delivery.name_kana
-      @cart.phone_number = @delivery.phone_number
+      if params[:cart][:delivery_id] == ""
+        return
+      else
+        @delivery = Delivery.find(params[:cart][:delivery_id])
+        @cart.postcode = @delivery.postcode
+        @cart.address = @delivery.address
+        @cart.name = @delivery.name
+        @cart.name_kana = @delivery.name_kana
+        @cart.phone_number = @delivery.phone_number
+      end
     else # それ以外
     end
     
     if @cart.save
-      flash[:success] = "カートに追加しました"
+      flash[:success] = "カートに商品を追加しました!"
       redirect_to public_cart_path(params[:cart][:customer_id])
     else
       flash[:alert] = 'カートに追加できませんでした'
@@ -63,7 +67,7 @@ class Public::CartsController < ApplicationController
   def update
     @cart = Cart.find(params[:cart][:id])
     if @cart.update(cart_params)
-      flash[:success] = "変更しました"
+      flash[:success] = "注文内容を変更しました！"
       redirect_to public_cart_path(params[:id])
     else
       @carts = Cart.where(customer_id: params[:cart][:customer_id])

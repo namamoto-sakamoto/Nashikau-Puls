@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     @customer.farmer_id = current_farmer.id
     if @customer.save
-      flash[:success] = "顧客情報を登録しました"
+      flash[:success] = "顧客情報を登録しました！"
       redirect_to public_customers_path(@customer)
     else
       render :new
@@ -31,7 +31,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      flash[:success] = "顧客情報のアップデートが完了しました"
+      flash[:success] = "顧客情報のアップデートが完了しました！"
       redirect_to public_customer_path
     else
       render :edit

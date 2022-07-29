@@ -24,7 +24,7 @@ class Public::DeliveriesController < ApplicationController
   def update
     @delivery = Delivery.find(params[:id])
     if @delivery.update(delivery_params)
-      flash[:success] = "送り先情報のアップデートが完了しました"
+      flash[:success] = "送り先情報のアップデートが完了しました！"
       redirect_to public_delivery_path(@delivery.customer_id)
     else
       @delivery = Delivery.find(params[:id])

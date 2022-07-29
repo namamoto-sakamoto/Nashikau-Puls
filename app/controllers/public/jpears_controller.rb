@@ -12,7 +12,7 @@ class Public::JpearsController < ApplicationController
     @jpear = Jpear.new(jpear_params)
     @jpear.farmer_id = current_farmer.id
     if @jpear.save
-      flash[:notice] = "新しく品種が登録されました"
+      flash[:notice] = "新しく品種が登録されました！"
       redirect_to public_jpears_path
     else
       render :new
@@ -28,7 +28,7 @@ class Public::JpearsController < ApplicationController
   def update
     @jpear = Jpear.find(params[:id])
     if @jpear.update(jpear_params)
-      flash[:success] = "販売ステータスのアップデートが完了しました"
+      flash[:success] = "販売ステータスが更新されました！"
       redirect_to public_jpear_path(@jpear)
     else
       @jpear = Jpear.find(params[:id])

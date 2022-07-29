@@ -24,7 +24,7 @@ class Public::OrdersController < ApplicationController
       # カート内商品を全て削除
       @cart.destroy_all
       
-      flash[:success] = "注文を確定しました"
+      flash[:success] = "注文を確定しました！"
       redirect_to  public_order_path(@order.customer_id)
     else
       flash[:alert] = '注文に失敗しました'
