@@ -1,37 +1,41 @@
-<h4><%= @customer.full_name %>様</h4>
-
-<table class="table table-borderless">
-  <tbody>
-    <tr>
-      <td>ID</td>
-      <td><%= @customer.id %></td>
-    </tr>
-    <tr>
-      <td>氏名</td>
-      <td><%= @customer.full_name %></td>
-    </tr>
-    <tr>
-      <td>フリガナ</td>
-      <td><%= @customer.full_name_kana %></td>
-    </tr>
-    <tr>
-      <td>郵便番号</td>
-      <td><%= @customer.postcode %></td>
-    </tr>
-    <tr>
-      <td>住所</td>
-      <td><%= @customer.address %></td>
-    </tr>
-    <tr>
-      <td>連絡先電話番号</td>
-      <td><%= @customer.phone_number %></td>
-    </tr>
-     <tr>
-      <td>メモ</td>
-      <td><%= @customer.memo %></td>
-    </tr>
-  </tbody>
-</table>
+<h4>顧客詳細</h4>
+<div class="row">
+  <div class="col-8 offset-1 mt-5">
+    <h4><%= @customer.full_name %>様</h4>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <td>ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= @customer.full_name %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= @customer.full_name_kana %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= @customer.postcode %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td>連絡先電話番号</td>
+          <td><%= @customer.phone_number %></td>
+        </tr>
+         <tr>
+          <td>メモ</td>
+          <td><%= @customer.memo %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <div class="active mt-5">
    <div class="btn btn-outline-info ml-3">
     <%= link_to public_customers_path do %>
@@ -51,4 +55,5 @@
       送り先
     <% end %>
   </div>
-</div> 
+</div>
+

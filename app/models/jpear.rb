@@ -5,6 +5,7 @@ class Jpear < ApplicationRecord
   
   # バリデーション
   validates :image, :name, :status, presence: true
+  validates :name, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
   
   # 画像未投稿時の対処
   def get_image(width, height)

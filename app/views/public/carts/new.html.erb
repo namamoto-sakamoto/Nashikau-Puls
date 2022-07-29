@@ -1,71 +1,72 @@
 <h4>注文フォーム</h4>
-<%= form_with model:@cart, url: public_carts_path, method: :post, local:true do |f| %>
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>注文者</td>
-        <td><%= @customer.full_name %></td>
-        <%= f.hidden_field :customer_id, :value => @customer.id %>
-      </tr>
-      
-      <!--ここから梨の品種-->
-      <tr>
-        <td><%= f.label :jpear, "品種" %></td>
-        <td><%= @jpear.name %></td>
-      </tr> 
-      <!--ここから販売商品-->
-      <tr>
-        <td><%= f.label :product_type, "販売商品" %></td>
-        <td>
-          <%= f.select :product_type_id, @product_types.map{ |product_type| [product_type.product_type_set, product_type.id] }, { include_blank: "選択してください" } %>
-          <%= f.select :amount, *[0..40] %>
-        <td>
-      </tr>
-      <!--ここからお届け先(ラジオボタン)-->
-      <tr>
-        <td><%= f.label :delivery, "お届け先" %></td>
-      </tr><br>
-      <tr>
-        <td>
-          <%= f.radio_button :shipping_address, 0 %>
-          <%= f.label :shipping_address, "お持ち帰り", value: 0 %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= f.radio_button :shipping_address, 1 %>
-          <%= f.label :shipping_address, "ご自身の住所", value: 1 %>
-          <%#= f.label :customer, @customers.my_address_display %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= f.radio_button :shipping_address, 2 %>
-          <%= f.label :shipping_address, "登録済みの住所", value: 2 %>
-        </td> 
-        <td>
-          <%= f.select :delivery_id, @deliveries.map{ |delivery| [delivery.address_display, delivery.id] }, { include_blank: "選択してください" } %>
-        </td>
-      </tr>  
-      <!--<tr>-->
-      <!--  <td><%#= f.label :memo, "メモ" %></td>-->
-      <!--  <td><%#= f.text_field :memo %></td>-->
-      <!--</tr>-->
-      <tr>
-        <td>
-          <div class="btn btn-outline-info ml-3">
-          <%= link_to public_customers_path do %>
-            <i class="fa-solid fa-arrow-rotate-left"></i>
-            一覧へ戻る
-          <% end %>
-          </div>
-        </td>
-        <td>
-          <%= f.button :type => "submit", class: 'btn btn-warning' do %>
-            <div><i class="fa-solid fa-cart-plus"></i> カートへ追加する </div>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-<% end %> 
+<div class="row">
+  <div class="col-8 offset-1 mt-5">
+    <%= form_with model:@cart, url: public_carts_path, method: :post, local:true do |f| %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>注文者</th>
+            <td><%= @customer.full_name %></td>
+            <%= f.hidden_field :customer_id, :value => @customer.id %>
+          </tr>
+          <!--ここから梨の品種-->
+          <tr>
+            <th><%= f.label :jpear, "品種" %></th>
+            <td><%= @jpear.name %></td>
+          </tr> 
+          <!--ここから販売商品-->
+          <tr>
+            <th><%= f.label :product_type, "販売商品" %></th>
+            <td>
+              <%= f.select :product_type_id, @product_types.map{ |product_type| [product_type.product_type_set, product_type.id] }, { include_blank: "選択してください　" } %>
+              <%= f.select :amount, *[0..40] %>
+            <td>
+          </tr>
+          <!--ここからお届け先(ラジオボタン)-->
+          <tr>
+            <th><%= f.label :delivery, "お届け先選択" %></th>
+            <td>
+              <%= f.radio_button :shipping_address, 0 %>
+              <%= f.label :shipping_address, "お持ち帰り", value: 0 %>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <%= f.radio_button :shipping_address, 1 %>
+              <%= f.label :shipping_address, "ご自身の住所", value: 1 %>
+              <%#= f.label :customer, @customers.my_address_display %>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <%= f.radio_button :shipping_address, 2 %>
+              <%= f.label :shipping_address, "登録済みの住所　　", value: 2 %>
+              <%= f.select :delivery_id, @deliveries.map{ |delivery| [delivery.address_display, delivery.id] }, { include_blank: "選択してください" } %>
+            </td>
+          </tr>  
+          <!--<tr>-->
+          <!--  <td><%#= f.label :memo, "メモ" %></td>-->
+          <!--  <td><%#= f.text_field :memo %></td>-->
+          <!--</tr>-->
+          <tr>
+            <td>
+              <div class="btn btn-outline-info mt-3">
+              <%= link_to public_customers_path do %>
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+                一覧へ戻る
+              <% end %>
+              </div>
+            </td>
+            <td>
+              <%= f.button :type => "submit", class: 'btn btn-warning btn-lg ml-5 mt-5' do %>
+                <div><i class="fa-solid fa-cart-plus"></i> カートへ追加する </div>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %> 
+  </div>
+</div>  

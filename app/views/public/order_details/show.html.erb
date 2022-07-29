@@ -14,24 +14,24 @@
       <tbody>
         <% @total = 0 %>
         <% @order_details.each do |order_details| %>
-        <tr>
-          <td>
-            <%= order_details.product_type.jpear.name %>
-          </td>
-          <td>
-            <%= order_details.product_type.item_name %>
-          </td>  
-          <td>
-            <%= order_details.product_type.tax_price.to_s(:delimited) %>
-          </td>
-          <td>
-            <%= order_details.total %>
-          </td>
-          <td>
-            <%= order_details.subtotal.to_s(:delimited) %>
-          </td>
-        </tr>
-        <% @total += order_details.subtotal %>
+          <tr>
+            <td>
+              <%= order_details.product_type.jpear.name %>
+            </td>
+            <td>
+              <%= order_details.product_type.item_name %>
+            </td>  
+            <td>
+              <%= order_details.product_type.tax_price.to_s(:delimited) %>円
+            </td>
+            <td>
+              <%= order_details.total %>
+            </td>
+            <td>
+              <%= order_details.subtotal.to_s(:delimited) %>円
+            </td>
+          </tr>
+          <% @total += order_details.subtotal %>
         <% end %>
       </tbody>
     </table>
@@ -41,8 +41,8 @@
   <div class="col-5 offset-1">
     <table class="table table-bordered mt-4">
       <tbody>
-        <th>合計</th>
-        <td><%= @total %></td>
+        <th class="table-secondary">合計</th>
+        <td><%= @total.to_s(:delimited) %>円</td>
       </tbody>
     </table>
   </div>
