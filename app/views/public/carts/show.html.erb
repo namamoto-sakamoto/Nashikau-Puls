@@ -26,7 +26,7 @@
               </td>
               <td>
                 <%= form_with model: cart, url: public_cart_path, method: :put, local:true do |f| %>
-                  <%= f.select :amount, *[1..40] %>
+                  <%= f.select :amount, *[0..40] %>
                   <%= f.hidden_field :id, :value => cart.id %>
                   <%= f.hidden_field :customer_id, :value => cart.customer_id %>
                   <%= f.submit '変更', class: "btn btn-sm btn-success" %>

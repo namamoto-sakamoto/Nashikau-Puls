@@ -70,7 +70,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>ID</th>
+          <th></th>
           <th>販売商品名</th>
           <th>単価（税込）</th>
           <th></th>
@@ -79,9 +79,9 @@
       <tbody>
         <% @product_types.each do |product_type| %>
           <tr>
-            <td><%= product_type.id %></td>
+            <td></td>
             <td><%= product_type.item_name %></td>
-            <td><%= product_type.tax_price %></td>
+            <td><%= product_type.tax_price.to_s(:delimited) %>円</td>
             <td class="btn btn-danger btn-sm">
               <%= link_to public_product_type_path(product_type.id), method: :delete, "data-confirm" => "商品を削除します。よろしいでしょうか？" do %>
                 <i class="fa-regular fa-trash-can"></i>

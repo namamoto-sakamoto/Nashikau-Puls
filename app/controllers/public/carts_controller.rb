@@ -3,12 +3,16 @@ class Public::CartsController < ApplicationController
 
 # 注文フォーム
   def new
-    @cart = Cart.new
-    # @carts = Cart.where(customer_id: params[:format])
-    @customer = Customer.find(params[:format])
-    @deliveries = Delivery.where(customer_id: @customer.id)
-    @product_types = ProductType.where(jpear_id: params[:customer][:jpear])
-    @jpear = Jpear.find(params[:customer][:jpear])
+    if params[:customer][:jpear] == ""
+      redirect_to public_customers_path
+    else  
+      @cart = Cart.new
+      # @carts = Cart.where(customer_id: params[:format])
+      @customer = Customer.find(params[:format])
+      @deliveries = Delivery.where(customer_id: @customer.id)
+      @product_types = ProductType.where(jpear_id: params[:customer][:jpear])
+      @jpear = Jpear.find(params[:customer][:jpear])
+    end  
   end 
   
   # カートに追加するボタンでcreate
