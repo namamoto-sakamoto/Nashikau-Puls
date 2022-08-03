@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   def show
-    @orders = Order.all
+    @orders = Order.page(params[:page]).per(9)
   end
   
   def create

@@ -4,7 +4,7 @@
   <table class="table table-borderless">
     <tr>
       <td><%= f.label :image, "梨画像" %></td>
-      <td><%= f.file_field :image %></td>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
     </tr>  
     <tr>
       <td><%= f.label :name, "品種名" %></td>
