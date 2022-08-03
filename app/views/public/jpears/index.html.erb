@@ -4,17 +4,19 @@
 <div class="row">
 <!--カードにする-->
   <% @jpears.each do |jpear| %>
-    <div class="col-lg-2 offset-1 mt-5" style="box-sizing: content-box">
+    <%= link_to public_jpear_path(jpear.id) do %> 
+    <div class="col-2 offset-1 mt-5" style="box-sizing: content-box">
       <div class="card text-center" style="width: 18rem;">
-        <div class="card-body">
-    　    <%= link_to public_jpear_path(jpear.id) do %>  
-    　　    <%= image_tag jpear.get_image(100,100) %>
-    　　  <% end %>
-          <h5 class="mt-3"><%= jpear.name %></h5>
-          <p class="mt-3"><%= jpear.status_i18n %></p>
+        <div class="card-body"> 
+        <div class="mx-auto" style="width: 200px;">
+    　　    <%= image_tag jpear.get_image(150,150) %>
+    　　  </div>  
+        <h5 class="mt-3"><%= jpear.name %></h5>
+        <p class="mt-3"><%= jpear.status_i18n %></p>
         </div>
       </div>
     </div>  
+    <% end %>
   <% end %>
 </div>  
 

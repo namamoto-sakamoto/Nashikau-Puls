@@ -35,6 +35,7 @@ gem 'mechanize'
 gem 'rails-i18n'
 gem "font-awesome-sass", "~> 6.1.1"
 gem 'listen', '~> 3.3'
+gem 'kaminari'
 
 
 group :development, :test do

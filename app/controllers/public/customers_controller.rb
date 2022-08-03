@@ -1,7 +1,7 @@
 class Public::CustomersController < ApplicationController
   
   def index
-    @customers = Customer.where(farmer_id: current_farmer.id)
+    @customers = Customer.where(farmer_id: current_farmer.id).page(params[:page]).per(9)
     @jpears = Jpear.where(farmer_id: current_farmer.id)
   end
 
