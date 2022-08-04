@@ -1,6 +1,6 @@
 <h4 class="ml-3">現在カートに入っている商品<i class="fa-solid fa-cart-plus"></i></h4>
 <div class="row">
-  <div class="col-10 offset-1">
+  <div class="col-11 offset-1">
     <div class="cart_table">
      <table class="table table-bordered">
         <thead class="table-secondary">
@@ -68,7 +68,6 @@
   <div class="status_btn">
     <div class="receipt_status">
       <%= f.radio_button :status, Order.statuses.key(0) %>
-      <!-- config/locales/ja.ymlに定義した英語に対応した日本語の呼び出し-->
       <%= f.label :status, Order.statuses_i18n[:receipt] %>
     </div>
     <div class="accrued_status">

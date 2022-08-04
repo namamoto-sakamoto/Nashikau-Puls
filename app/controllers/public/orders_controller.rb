@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
-  def show
-    @orders = Order.page(params[:page]).per(9)
+  def index
+    @orders = Order.where(customer: current_farmer.customers).page(params[:page]).per(9)
   end
   
   def create
@@ -25,7 +25,7 @@ class Public::OrdersController < ApplicationController
       @cart.destroy_all
       
       flash[:success] = "注文を確定しました！"
-      redirect_to  public_order_path(@order.customer_id)
+      redirect_to  public_orders_path
     else
       flash[:alert] = '注文に失敗しました'
       redirect_to public_cart_path(@order.customer_id)
@@ -35,10 +35,10 @@ class Public::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      redirect_to  public_order_path(@order.customer_id)
+      redirect_to  public_orders_path
     else
-      @orders = Order.where(customer_id: @order.customer_id)
-      render :show
+      @orders = Order.where(customer: current_farmer.customers).page(params[:page]).per(9)
+      render :index
     end  
   end 
   
@@ -46,7 +46,7 @@ class Public::OrdersController < ApplicationController
     @Order = Order.find(params[:id])
     @Order.destroy
     @Order.order_details.destroy
-    redirect_to public_order_path(params[:format])
+    redirect_to public_orders_path
   end
   
   private
