@@ -9,6 +9,8 @@ class Jpear < ApplicationRecord
   def get_image(width, height)
     if image.attached?
       image.variant(resize_to_limit: [width, height]).processed
+    else
+      
     end
   end
   
