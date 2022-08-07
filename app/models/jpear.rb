@@ -9,11 +9,9 @@ class Jpear < ApplicationRecord
   def get_image(width, height)
     if image.attached?
       image.variant(resize_to_limit: [width, height]).processed
-    else
-      
     end
   end
-  
-  #enumにて販売状況と文字列の紐づけ
+
+  #販売状況と文字列の紐づけ
   enum status: { sold: 0, sale: 1 }
 end
