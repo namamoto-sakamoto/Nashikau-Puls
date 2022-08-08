@@ -12,6 +12,8 @@ class Public::CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     @customer.farmer_id = current_farmer.id
+    address_memo = Language.get_data(customer_params[:address] + "," + customer_params[:memo])
+    @customer.metadata = address_memo
     if @customer.save
       flash[:success] = "顧客情報を登録しました！"
       redirect_to public_customers_path(@customer)

@@ -35,8 +35,10 @@ class Public::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
+      flash[:success] = "徴収ステータスが変更されました！"
       redirect_to  public_orders_path
     else
+      flash[:alert] = '徴収ステータス変更に失敗しました'
       @orders = Order.where(customer: current_farmer.customers).page(params[:page]).per(9)
       render :index
     end  
