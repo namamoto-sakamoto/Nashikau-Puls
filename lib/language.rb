@@ -6,12 +6,12 @@ module Language
   class << self
     def get_data(text)
       # APIのURL作成
-      api_url = "https://language.googleapis.com/v1/documents:analyzeSyntax?key=#{ENV['GOOGLE_API_KEY']}"
+      api_url = "https://language.googleapis.com/v1/documents:analyzeEntities?key=#{ENV['GOOGLE_API_KEY']}"
       # APIリクエスト用のJSONパラメータ
       params = {
         document: {
           type: 'PLAIN_TEXT',
-          language: 'ja'
+          language: 'ja',
           content: text
         }
       }.to_json
@@ -27,7 +27,7 @@ module Language
       if (error = response_body['error']).present?
         raise error['message']
       else
-        response_body['documentSentiment']['score']
+        response_body['entities'].pluck("name","type").to_s
       end  
     end
   end
