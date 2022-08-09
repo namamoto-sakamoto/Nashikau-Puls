@@ -14,8 +14,6 @@
   　　<th></th>
   　　<th></th>
   　　<th></th>
-  　　<th></th>
-  　　<th></th>
   　</tr>
   </thead>    
   <tbody>
@@ -29,7 +27,6 @@
         </td>
     　　<td><%= customer.phone_number %></td>
     　　<td><%= customer.address %></td>
-    　　<td></td>
     　　<!--品種のセレクトボックス-->
     　　<%= form_with model: customer, url: new_public_cart_path(customer.id), method: :get, local:true do |f| %>
       　　<td>
@@ -39,19 +36,19 @@
             <% end %>
           </td>
         <% end %>
-        <td class="btn btn-info ml-4">
+        <td class="btn btn-info">
           <%= link_to public_delivery_path(customer.id) do %>
             <i class="fa-solid fa-truck"></i>
             送り先
           <% end %>
         </td>
-        <td class="btn btn-warning ml-4">
+        <td class="btn btn-warning ml-3">
           <%= link_to edit_public_customer_path(customer.id) do %>
             <i class="fa-regular fa-pen-to-square"></i>
             編集
           <% end %>
         </td>
-        <td class="btn btn-danger ml-4">
+        <td class="btn btn-danger ml-3">
           <%= link_to public_customer_path(customer.id), method: :delete, data:{confirm:"#{customer.full_name}を削除します。よろしいでしょうか？"} do %>
             <i class="fa-regular fa-trash-can"></i>
             削除
