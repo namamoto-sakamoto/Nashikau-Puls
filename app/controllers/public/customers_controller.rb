@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_farmer!
   
   def index
     @customers = Customer.where(farmer_id: current_farmer.id).page(params[:page]).per(9)

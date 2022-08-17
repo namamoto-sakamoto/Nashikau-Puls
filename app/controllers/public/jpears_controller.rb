@@ -1,4 +1,6 @@
 class Public::JpearsController < ApplicationController
+  before_action :authenticate_farmer!
+  
   def index
     @jpears = Jpear.where(farmer_id: current_farmer.id)
   

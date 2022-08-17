@@ -1,4 +1,6 @@
 class Public::DeliveriesController < ApplicationController
+  before_action :authenticate_farmer!
+  
   def show
     @delivery = Delivery.new
     @deliveries = Delivery.where(customer_id: params[:id])

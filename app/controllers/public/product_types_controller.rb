@@ -1,4 +1,6 @@
 class Public::ProductTypesController < ApplicationController
+  before_action :authenticate_farmer!
+  
   def index
     @product_type = ProductType.new
     @product_types = ProductType.where(jpear_id: params[:id])

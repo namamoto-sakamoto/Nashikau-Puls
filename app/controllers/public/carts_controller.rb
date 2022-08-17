@@ -1,4 +1,5 @@
 class Public::CartsController < ApplicationController
+  before_action :authenticate_farmer!
   protect_from_forgery
 
 # 注文フォーム
